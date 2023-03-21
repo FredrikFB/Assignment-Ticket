@@ -61,9 +61,9 @@ internal class DataService
     public static async Task<TicketEntity> GetOneAsync(int id)
     {
         var ticket = await _context.Tickets
-    .Include(x => x.Customer)
-    .Include(x => x.Comments)
-    .SingleOrDefaultAsync(x => x.TicketId == id);
+        .Include(x => x.Customer)
+        .Include(x => x.Comments)
+        .SingleOrDefaultAsync(x => x.TicketId == id);
         if (ticket != null)
         {
             return ticket;

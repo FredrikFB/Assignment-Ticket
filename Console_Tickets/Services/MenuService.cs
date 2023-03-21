@@ -5,64 +5,8 @@ namespace Console_Tickets.Services;
 
 internal class MenuService
 {
-        
-    
-    public async void MainMenu()
-    {
 
-
-        Console.Clear();
-        Console.WriteLine("1. Skapa ett ärende/felanmälan");
-        Console.WriteLine("2. Visa alla ärenden");
-        Console.WriteLine("3. Visa ett specifikt ärende");
-        Console.WriteLine("4. Updatera ett ärende");
-        Console.WriteLine("5. Ta bort ett ärende");  
-        Console.WriteLine("6. Lägg Till en kommentar til ett ärende"); 
-        string value = Console.ReadLine() ??"";
-
-        switch (value)
-        {
-            case "1":
-                Console.Clear();
-                 OptionOneAsync();
-                Console.ReadKey();
-                break;
-            case "2":
-                Console.Clear();
-                 OptionTwoAsync();
-                Console.ReadKey();
-                break;
-            case "3":
-                Console.Clear();
-                 OptionThreeAsync();
-                Console.ReadKey();
-                break;
-            case "4":
-                Console.Clear();
-                 OptionFourAsync();
-                Console.ReadKey();
-                break;
-            case "5":
-                Console.Clear();
-                 OptionFiveAsync();
-                Console.ReadKey();
-                break;
-            case "6":
-                Console.Clear();
-                OptionSixAsync();
-                Console.ReadKey();
-                break; 
-            default:
-                Console.Clear();
-                Console.WriteLine("Inte ett alternativ");
-                Console.ReadKey();
-                break;
-        }
-        Console.WriteLine("\nTryck på valfri knapp för att fortsätta...");
-        Console.ReadKey();
-    }
-
-    private static async Task OptionOneAsync()
+    public async Task OptionOneAsync()
     {
         var errand = new Errand();
 
@@ -92,7 +36,7 @@ internal class MenuService
         await DataService.CreateAsync(errand);
     }
 
-    private static async Task OptionTwoAsync()
+    public async Task OptionTwoAsync()
     {
 
         var errands = await DataService.GetAllAsync();
@@ -119,7 +63,7 @@ internal class MenuService
 
 
     }
-    private static async Task OptionThreeAsync()
+    public async Task OptionThreeAsync()
     {
         
         Console.Write("Skriv in Id på ärendet: ");
@@ -165,7 +109,7 @@ internal class MenuService
 
     }
 
-    private static async Task OptionFourAsync()
+    public async Task OptionFourAsync()
     {
         Console.Write("Skriv in Id på ärendet du vill updatera: ");
 
@@ -194,10 +138,8 @@ internal class MenuService
                 Console.Write("Beskrivning: ");
                 errand.Description = Console.ReadLine() ?? "";
 
-                Console.Write("Status: ");
-                errand.Status = Console.ReadLine() ?? "";
 
-                /*Console.Clear();
+                Console.Clear();
                 Console.WriteLine("Välj status: ");
                 Console.WriteLine("1: Ej Påbörjad ");
                 Console.WriteLine("2: Pågående ");
@@ -222,7 +164,7 @@ internal class MenuService
                             break;
                     }
                 }
-                while(status != "1" && status != "2" && status != "3");*/
+                while(status != "1" && status != "2" && status != "3");
 
 
                 await DataService.UpdateAsync(errand);
@@ -240,7 +182,7 @@ internal class MenuService
         }
     }
 
-    private static async Task OptionFiveAsync()
+    public async Task OptionFiveAsync()
     {
         Console.Write("Skriv in Id på Ärendet du vill ta bort: ");
 
@@ -260,7 +202,7 @@ internal class MenuService
         }
     }
 
-    private async Task OptionSixAsync()
+    public async Task OptionSixAsync()
     {
         var comment = new CommentModel();
 
